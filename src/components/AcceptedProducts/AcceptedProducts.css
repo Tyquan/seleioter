@@ -1,0 +1,10 @@
+#acceptedProducts {
+    width: 100%;
+    height: 1000px;
+    background-image: url('../../images/e-waste.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.75);
+    color: white;
+}
