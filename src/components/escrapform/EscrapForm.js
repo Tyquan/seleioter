@@ -21,7 +21,7 @@ const EscrapForm = () => {
 
     function addEscrap (e) {
         e.preventDefault();
-        // send to database
+        // send data to the database
         postData("https://www.weemaple.com/api/v1/escraps", {
             name, email, address, addressCity, addressState, zipCode, contactNumber, availableDate, availableTime, category, count, message
         });
