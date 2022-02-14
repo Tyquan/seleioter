@@ -1,11 +1,8 @@
-import { useContext, useState } from "react";
-//import 'dotenv/config';
+import { useState } from "react";
 
-import EscrapContext from "../../context/EscrapContext";
 import {postData} from '../../helpers/crud';
 
 const EscrapForm = () => {
-    const { dispatch } = useContext(EscrapContext);
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
