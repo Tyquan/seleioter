@@ -1,10 +1,12 @@
 import { useContext, useState } from "react";
-import EscrapContext from "../../context/EscrapContext";
+//import 'dotenv/config';
 
+import EscrapContext from "../../context/EscrapContext";
 import {postData} from '../../helpers/crud';
 
 const EscrapForm = () => {
     const { dispatch } = useContext(EscrapContext);
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
@@ -16,41 +18,40 @@ const EscrapForm = () => {
     const [category, setCategory] = useState("");
     const [count, setCount] = useState("");
     const [message, setMessage] = useState("");
-    const [availableDate, setavailableDate] = useState(Date.now());
-
-    async function addEscrap (e) {
-        
-        postData(process.env.apiUrl || "http://localhost:5000/api/v1/escraps", {
-            name, email, address, addressCity, addressState, zipCode, contactNumber, availableDate, availableTime, category, count, message
-        }).then(() => {
-            dispatch({
-                type: 'ADD_ESCRAP',
-                name, email, address, addressCity, addressState, zipCode, contactNumber, availableDate, availableTime, category, count, message
-            });
+    const [availableDate, setAvailableDate] = useState("");
+    const [error, setError] = useState("");
     
-            // reset stuff
-            setName("");
-            setEmail("");
-            setAddress("");
-            setAddressCity("");
-            setAddressState("");
-            setZipCode("");
-            setContactNumber("");
-            setAvailableTime("");
-            setCategory("");
-            setCount("");
-            setMessage("");
-            setavailableDate(Date.now());
-        }).catch(err => console.log(err))
 
-        
+    function addEscrap (e) {
+        e.preventDefault();
+        // send to database
+        postData("https://www.weemaple.com/api/v1/escraps", {
+            name, email, address, addressCity, addressState, zipCode, contactNumber, availableDate, availableTime, category, count, message
+        });
+
+        // reset state
+        setName("");
+        setEmail("");
+        setAddress("");
+        setAddressCity("");
+        setAddressState("");
+        setZipCode("");
+        setContactNumber("");
+        setAvailableTime("");
+        setCategory("");
+        setCount("");
+        setMessage("");
+        setAvailableDate("");
+        setError("The message has been sent successfully!. We will call you at our earliest convience.");
     }
+
     return (
         <div id='centerize2'>
             <form onSubmit={addEscrap} className="form">
                 <h1 className="text-center">Have Some Old Electronics Laying Around?</h1>
                 <h2 className="text-center">We'll Come Pick It Up!</h2>
                 <hr />
+                <p id="sentMessage">{error}</p>
                 <div className="row">
                     <div className="col-md-6">
                         <input type="text" className="form-control" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
@@ -86,7 +87,7 @@ const EscrapForm = () => {
                     </div>
                     <div className="col-md-2">
                         <label>Best Available Date:</label>
-                        <input type="date" className="form-control" value={availableDate} onChange={(e) => setavailableDate(e.target.value)} placeholder="Available Date" />
+                        <input type="date" className="form-control" value={availableDate} onChange={(e) => setAvailableDate(e.target.value)} placeholder="Available Date" />
                     </div>
                     <div className="col-md-4">
                         <label>Best Available Time:</label>
@@ -120,5 +121,6 @@ const EscrapForm = () => {
         </div>
     );
 }
+
 
 export default EscrapForm;

@@ -29,7 +29,5 @@ export const removeData = async (url = '', data = {}) => {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify(data)
     });
-
-    console.log("Removed Successfully");
     return;
 };

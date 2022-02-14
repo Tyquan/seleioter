@@ -1,8 +1,8 @@
-import { useEffect, useReducer} from 'react';
+import { useReducer} from 'react';
 import escrapsReducer from './reducers/escraps';
 import EscrapContext from './context/EscrapContext';
 import './App.css';
-import EscrapForm from './components/escrapform/EscrapForm';
+import EscrapForm from './components/Escrapform/EscrapForm';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MainImage from './components/MainImage/MainImage';
@@ -12,13 +12,6 @@ import AcceptedProducts from './components/AcceptedProducts/AcceptedProducts';
 function App() {
 
   const [escraps, dispatch] = useReducer(escrapsReducer);
-  
-
-  useEffect(() => {
-    fetch('http://localhost:8080/api/V1/escraps')
-      .then(response => response.json())
-      .then(data => console.log("Escrap Data:", data));
-  }, [])
 
   return (
     <EscrapContext.Provider value={{escraps, dispatch}}>
