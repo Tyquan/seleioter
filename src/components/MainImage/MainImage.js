@@ -21,8 +21,8 @@ const MainImage = () => (
                     <div className='col-md-4'>
                         <div id="contactInfo">
                             <h3>Contact Us</h3>
-                            <h4>1-973-963-9017</h4>
-                            <h4>seleio@gmail.com</h4>
+                            <h4>1-908-357-8148</h4>
+                            <h4>seleioter@gmail.com</h4>
                         </div>
                     </div>
                     <div className='col-md-4'>
